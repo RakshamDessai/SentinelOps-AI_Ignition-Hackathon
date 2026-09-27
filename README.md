@@ -137,7 +137,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🏆 Hackathon Project Presentation Guide
+## 🎯 Interactive Product Walkthrough Guide
 
 1. **Open the Live App:** Navigate to [https://sentinel-ops-ai-ignition-hackathon.vercel.app](https://sentinel-ops-ai-ignition-hackathon.vercel.app) to view the clean, enterprise-grade dark mode observability command center.
 2. **Observe Failure Prediction:** Point out the **94% Failure Risk** and the **countdown timer to failure (09:00)** predicting the incident before any 504 outage occurs.
@@ -151,7 +151,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-*SentinelOps AI — Built with passion for the Ignite 1% Hackathon (Ignition in AI Era).*
