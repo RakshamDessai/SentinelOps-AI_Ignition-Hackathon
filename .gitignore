@@ -36,3 +36,9 @@ next-env.d.ts
 # audio & media assets
 *.mp3
 public/*.mp3
+
+# presentation deck & scripts
+*.pptx
+create_presentation.py
+presentation_assets/
+
