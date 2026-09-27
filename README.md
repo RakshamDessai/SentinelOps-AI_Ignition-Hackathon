@@ -110,33 +110,6 @@ By continuously ingesting and cross-correlating signals across the entire softwa
 
 ---
 
-## 🛠️ Getting Started Locally
-
-### Prerequisites
-- Node.js 18+ (tested on Node 24.16)
-- npm or pnpm
-
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/RakshamDessai/SentinelOps-AI_Ignition-Hackathon.git
-cd SentinelOps-AI_Ignition-Hackathon
-
-# Install dependencies
-npm install
-
-# (Optional) Add your Gemini API key for live LLM reasoning
-# If omitted, SentinelOps seamlessly uses its built-in SRE heuristic intelligence engine!
-echo "GEMINI_API_KEY=your_key_here" > .env.local
-
-# Run the development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
 ## 🎯 Interactive Product Walkthrough Guide
 
 1. **Open the Live App:** Navigate to [https://sentinel-ops-ai-ignition-hackathon.vercel.app](https://sentinel-ops-ai-ignition-hackathon.vercel.app) to view the clean, enterprise-grade dark mode observability command center.
