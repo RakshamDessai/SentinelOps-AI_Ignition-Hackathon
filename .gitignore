@@ -39,6 +39,8 @@ public/*.mp3
 
 # presentation deck & scripts
 *.pptx
+*.html
 create_presentation.py
 presentation_assets/
+
 
