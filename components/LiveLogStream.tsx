@@ -29,14 +29,14 @@ export const LiveLogStream: React.FC<LogProps> = ({ logs, isRemediated }) => {
   const getLevelBadge = (level: LogEntry['level']) => {
     switch (level) {
       case 'FATAL':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300 border-purple-300 dark:border-purple-700/60 font-bold';
+        return 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/50 dark:text-purple-300 dark:border-purple-800 font-bold';
       case 'ERROR':
-        return 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300 border-rose-300 dark:border-rose-700/60 font-semibold';
+        return 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800 font-semibold';
       case 'WARN':
-        return 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border-amber-300 dark:border-amber-700/60 font-medium';
+        return 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800 font-medium';
       case 'INFO':
       default:
-        return 'bg-sky-100 text-sky-800 dark:bg-sky-950/40 dark:text-sky-300 border-sky-300 dark:border-sky-700/40';
+        return 'bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/50 dark:text-sky-300 dark:border-sky-800';
     }
   };
 
@@ -92,31 +92,35 @@ export const LiveLogStream: React.FC<LogProps> = ({ logs, isRemediated }) => {
         </div>
       </div>
 
-      {/* Terminal Log Console */}
-      <div className="bg-slate-950 rounded-lg border border-slate-800 p-3 font-mono text-xs max-h-72 overflow-y-auto space-y-1.5">
+      {/* Telemetry Log Stream Container (Adaptive Light/Dark Mode) */}
+      <div className="bg-slate-50 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800 p-3 font-mono text-xs max-h-72 overflow-y-auto space-y-1.5 transition-colors duration-200">
         {filteredLogs.map((log) => (
           <div
             key={log.id}
-            className={`p-2 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-2 border transition-all ${
+            className={`p-2.5 rounded-md flex flex-col sm:flex-row sm:items-center justify-between gap-2 border transition-all ${
               log.isCulprit
-                ? 'bg-rose-950/40 border-l-4 border-l-rose-500 border-rose-900/50 text-rose-200'
-                : 'bg-slate-900/40 border-transparent hover:border-slate-800 text-slate-300'
+                ? 'bg-rose-50/90 dark:bg-rose-950/40 border-l-4 border-l-rose-500 border-rose-200 dark:border-rose-900/60 text-rose-950 dark:text-rose-100 shadow-xs'
+                : 'bg-white dark:bg-slate-900/60 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 text-slate-800 dark:text-slate-200'
             }`}
           >
-            <div className="flex items-start sm:items-center gap-2">
-              <span className="text-slate-500 text-[11px] shrink-0 font-mono">{log.timestamp}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded border uppercase font-mono ${getLevelBadge(log.level)}`}>
+            <div className="flex items-start sm:items-center gap-2 flex-1 min-w-0">
+              <span className="text-slate-400 dark:text-slate-500 text-[11px] shrink-0 font-mono">
+                {log.timestamp}
+              </span>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded border uppercase font-mono tracking-wider shrink-0 ${getLevelBadge(log.level)}`}>
                 {log.level}
               </span>
-              <span className="text-sky-400 font-semibold shrink-0 text-[11px] font-mono">
+              <span className="text-sky-700 dark:text-sky-400 font-semibold shrink-0 text-[11px] font-mono bg-sky-50 dark:bg-sky-950/60 px-1.5 py-0.5 rounded border border-sky-200/80 dark:border-sky-800/60">
                 [{log.service}]
               </span>
-              <span className="leading-snug break-all font-mono text-[11px]">{log.message}</span>
+              <span className="leading-snug break-all font-mono text-[11px] select-text">
+                {log.message}
+              </span>
             </div>
 
             {log.isCulprit && (
-              <span className="shrink-0 px-2 py-0.5 rounded bg-rose-600 text-white font-semibold text-[10px] uppercase tracking-wider self-start sm:self-auto flex items-center gap-1 shadow-xs">
-                <AlertCircle className="w-3 h-3" />
+              <span className="shrink-0 px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 font-medium text-[10px] uppercase tracking-wider self-start sm:self-auto flex items-center gap-1 font-mono">
+                <AlertCircle className="w-3 h-3 text-rose-600 dark:text-rose-400" />
                 Culprit Anomaly
               </span>
             )}
@@ -124,12 +128,12 @@ export const LiveLogStream: React.FC<LogProps> = ({ logs, isRemediated }) => {
         ))}
 
         {isRemediated && (
-          <div className="p-2 rounded bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs flex items-center gap-2">
-            <span className="text-slate-500">{new Date().toTimeString().split(' ')[0]}</span>
-            <span className="px-1.5 py-0.2 rounded bg-emerald-900/60 text-emerald-300 border border-emerald-700/60 font-semibold uppercase text-[10px]">
+          <div className="p-2.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-200 text-xs flex items-center gap-2">
+            <span className="text-slate-400 dark:text-slate-500 text-[11px]">{new Date().toTimeString().split(' ')[0]}</span>
+            <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700 font-semibold uppercase text-[10px] font-mono">
               RECOVERY
             </span>
-            <span className="text-[11px]">Autonomous mitigation synchronized. Cluster health check status: 200 OK.</span>
+            <span className="text-[11px] font-mono">Autonomous mitigation verified. Cluster health check status: 200 OK.</span>
           </div>
         )}
       </div>
