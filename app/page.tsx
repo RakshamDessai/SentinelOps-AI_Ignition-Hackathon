@@ -53,7 +53,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070b14] flex flex-col text-slate-100">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] flex flex-col text-slate-900 dark:text-slate-100 transition-colors duration-200">
       {/* 1. Top Navigation */}
       <Navbar
         onOpenCustomAnalyzer={() => setIsCustomAnalyzerOpen(true)}
@@ -127,20 +127,20 @@ export default function DashboardPage() {
       />
 
       {/* 5. Enterprise Observability Footer */}
-      <footer className="mt-12 border-t border-slate-800/80 bg-slate-950/80 py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <footer className="mt-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
           <div className="flex items-center gap-3">
-            <span className="font-mono font-bold text-white">SentinelOps AI</span>
+            <span className="font-mono font-bold text-slate-900 dark:text-white">SentinelOps AI</span>
             <span>•</span>
             <span>Continuous Telemetry & Incident Intelligence Platform</span>
             <span>•</span>
-            <span className="text-emerald-400 flex items-center gap-1.5 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               All Systems Operational
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-slate-400 text-[11px] font-mono">
+          <div className="flex items-center gap-4 text-slate-500 dark:text-slate-400 text-[11px] font-mono">
             <span>OpenTelemetry v1.28</span>
             <span>•</span>
             <span>Kubernetes v1.30</span>
