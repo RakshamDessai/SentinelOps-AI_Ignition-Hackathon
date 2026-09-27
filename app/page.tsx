@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { SCENARIOS } from '@/lib/scenarios';
 import { IncidentScenario } from '@/lib/types';
 import { Navbar } from '@/components/Navbar';
-import { TeamBadge } from '@/components/TeamBadge';
 import { ScenarioSwitcher } from '@/components/ScenarioSwitcher';
 import { FailurePredictionGauge } from '@/components/FailurePredictionGauge';
 import { SignalCorrelationGraph } from '@/components/SignalCorrelationGraph';
@@ -55,10 +54,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#070b14] flex flex-col text-slate-100">
-      {/* 1. Hackathon Banner */}
-      <TeamBadge />
-
-      {/* 2. Top Navigation */}
+      {/* 1. Top Navigation */}
       <Navbar
         onOpenCustomAnalyzer={() => setIsCustomAnalyzerOpen(true)}
         onOpenCopilot={() => setIsCopilotOpen(true)}
@@ -130,24 +126,26 @@ export default function DashboardPage() {
         scenario={currentScenario}
       />
 
-      {/* 5. Enterprise SRE Footer */}
+      {/* 5. Enterprise Observability Footer */}
       <footer className="mt-12 border-t border-slate-800/80 bg-slate-950/80 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div className="flex items-center gap-3">
             <span className="font-mono font-bold text-white">SentinelOps AI</span>
             <span>•</span>
-            <span>Ignite 1% Hackathon Official Project</span>
+            <span>Continuous Telemetry & Incident Intelligence Platform</span>
             <span>•</span>
-            <span className="text-sky-400">Open Innovation AI Track</span>
+            <span className="text-emerald-400 flex items-center gap-1.5 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              All Systems Operational
+            </span>
           </div>
 
-          <div className="flex items-center gap-4 text-slate-300">
-            <span>
-              Built with ❤️ by <strong className="text-white">Kaartikeya (Lead)</strong>,{' '}
-              <strong className="text-white">Sneha</strong>,{' '}
-              <strong className="text-white">Krushna</strong> &{' '}
-              <strong className="text-white">Raksham Dessai</strong>
-            </span>
+          <div className="flex items-center gap-4 text-slate-400 text-[11px] font-mono">
+            <span>OpenTelemetry v1.28</span>
+            <span>•</span>
+            <span>Kubernetes v1.30</span>
+            <span>•</span>
+            <span>PostgreSQL Wire v16</span>
           </div>
         </div>
       </footer>

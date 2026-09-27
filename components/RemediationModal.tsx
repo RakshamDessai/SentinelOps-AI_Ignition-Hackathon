@@ -79,7 +79,7 @@ export const RemediationModal: React.FC<RemediationProps> = ({
 ## Recommended Architectural Safeguards:
 ${remediation.postMortemReport.architecturalRecommendations.map(r => `- ${r}`).join('\n')}
 
-Generated autonomously by SentinelOps AI (Ignite 1% Hackathon)`;
+Generated autonomously by SentinelOps AI Incident Intelligence Platform`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

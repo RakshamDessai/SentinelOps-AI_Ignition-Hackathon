@@ -629,7 +629,7 @@ func RecordHeartbeat(patientId string, hb *HeartbeatPayload) {
       culpritService: 'inventory-service',
       culpritCommit: {
         hash: 'c4928db4',
-        author: 'lead-sneha@retail.io',
+        author: 'lead-architect@retail.io',
         timestamp: '45 minutes ago',
         message: 'feat(inventory): reorder reservation lock check to prioritize fast warehouse dispatch',
         service: 'inventory-service',
@@ -777,7 +777,7 @@ public void reserveStock(String skuId, String warehouseId) {
     ],
     deployment: {
       hash: 'c4928db4',
-      author: 'lead-sneha@retail.io',
+      author: 'lead-architect@retail.io',
       timestamp: '45 minutes ago',
       message: 'feat(inventory): reorder reservation lock check to prioritize fast warehouse dispatch',
       service: 'inventory-service',
