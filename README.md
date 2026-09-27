@@ -9,16 +9,6 @@
 
 > 🚀 **Live Production Deployment:** **[https://sentinel-ops-ai-ignition-hackathon.vercel.app](https://sentinel-ops-ai-ignition-hackathon.vercel.app)**  
 > 📂 **GitHub Repository:** **[https://github.com/RakshamDessai/SentinelOps-AI_Ignition-Hackathon](https://github.com/RakshamDessai/SentinelOps-AI_Ignition-Hackathon)**  
->  
-> **Ignite 1% Hackathon Submission**  
-> **Track:** Open Innovation AI  
-> **Organized by:** Ignition in AI Era • Student Tech & Careers • NxtGenSec  
->  
-> **Team:**  
-> - 👑 **Kaartikeya** (Team Lead & Full-Stack Architect)  
-> - ⚡ **Sneha** (Systems & Database Reliability Engineer)  
-> - 🧠 **Krushna** (AI Telemetry & Anomaly Modeling Engineer)  
-> - 🛠️ **Raksham Dessai** (DevOps & Distributed Systems Engineer)  
 
 ---
 
