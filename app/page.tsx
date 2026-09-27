@@ -1,0 +1,156 @@
+'use client';
+
+import React, { useState } from 'react';
+import { SCENARIOS } from '@/lib/scenarios';
+import { IncidentScenario } from '@/lib/types';
+import { Navbar } from '@/components/Navbar';
+import { TeamBadge } from '@/components/TeamBadge';
+import { ScenarioSwitcher } from '@/components/ScenarioSwitcher';
+import { FailurePredictionGauge } from '@/components/FailurePredictionGauge';
+import { SignalCorrelationGraph } from '@/components/SignalCorrelationGraph';
+import { MetricsOverview } from '@/components/MetricsOverview';
+import { RootCauseDetail } from '@/components/RootCauseDetail';
+import { LiveLogStream } from '@/components/LiveLogStream';
+import { RemediationModal } from '@/components/RemediationModal';
+import { CustomLogAnalyzer } from '@/components/CustomLogAnalyzer';
+import { OpsCopilotChat } from '@/components/OpsCopilotChat';
+import { Sparkles, Shield, HeartPulse, CheckCircle2 } from 'lucide-react';
+
+export default function DashboardPage() {
+  const [currentScenario, setCurrentScenario] = useState<IncidentScenario>(SCENARIOS[0]);
+  const [isRemediated, setIsRemediated] = useState<boolean>(false);
+  const [isRemediationModalOpen, setIsRemediationModalOpen] = useState<boolean>(false);
+  const [isCustomAnalyzerOpen, setIsCustomAnalyzerOpen] = useState<boolean>(false);
+  const [isCopilotOpen, setIsCopilotOpen] = useState<boolean>(false);
+
+  const handleSelectScenario = (sc: IncidentScenario) => {
+    setCurrentScenario(sc);
+    setIsRemediated(false);
+  };
+
+  const handleExecuteRemediation = async (actionId: string) => {
+    try {
+      const res = await fetch('/api/remediate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ actionId, scenarioId: currentScenario.id })
+      });
+      if (res.ok) {
+        setIsRemediated(true);
+      }
+    } catch (e) {
+      console.error('Failed to trigger remediation API', e);
+      setIsRemediated(true);
+    }
+  };
+
+  const handleReset = () => {
+    setIsRemediated(false);
+  };
+
+  const handleCustomAnalyzed = (customSc: IncidentScenario) => {
+    setCurrentScenario(customSc);
+    setIsRemediated(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#070b14] flex flex-col text-slate-100">
+      {/* 1. Hackathon Banner */}
+      <TeamBadge />
+
+      {/* 2. Top Navigation */}
+      <Navbar
+        onOpenCustomAnalyzer={() => setIsCustomAnalyzerOpen(true)}
+        onOpenCopilot={() => setIsCopilotOpen(true)}
+        isRemediated={isRemediated}
+        onReset={handleReset}
+      />
+
+      {/* 3. Main Dashboard Workspace */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Scenario Switcher */}
+        <ScenarioSwitcher
+          currentScenarioId={currentScenario.id}
+          onSelectScenario={handleSelectScenario}
+        />
+
+        {/* Hero Failure Prediction & TTF Gauge */}
+        <FailurePredictionGauge
+          prediction={currentScenario.prediction}
+          isRemediated={isRemediated}
+          onOpenRemediation={() => setIsRemediationModalOpen(true)}
+        />
+
+        {/* Cross-Stack Signal Correlation Topology */}
+        <SignalCorrelationGraph
+          scenario={currentScenario}
+          isRemediated={isRemediated}
+        />
+
+        {/* Multi-Stack Telemetry Timeseries Curves */}
+        <MetricsOverview
+          metrics={currentScenario.metrics}
+          isRemediated={isRemediated}
+        />
+
+        {/* Root Cause Detail & Causal Chain */}
+        <RootCauseDetail
+          rootCause={currentScenario.rootCause}
+          database={currentScenario.database}
+          isRemediated={isRemediated}
+          onOpenRemediation={() => setIsRemediationModalOpen(true)}
+        />
+
+        {/* Live Logs & Culprit Trace Stream */}
+        <LiveLogStream
+          logs={currentScenario.logs}
+          isRemediated={isRemediated}
+        />
+      </main>
+
+      {/* 4. Modals and Drawers */}
+      <RemediationModal
+        isOpen={isRemediationModalOpen}
+        onClose={() => setIsRemediationModalOpen(false)}
+        remediation={currentScenario.remediation}
+        scenarioId={currentScenario.id}
+        isRemediated={isRemediated}
+        onExecuteRemediation={handleExecuteRemediation}
+      />
+
+      <CustomLogAnalyzer
+        isOpen={isCustomAnalyzerOpen}
+        onClose={() => setIsCustomAnalyzerOpen(false)}
+        onAnalyzed={handleCustomAnalyzed}
+      />
+
+      <OpsCopilotChat
+        isOpen={isCopilotOpen}
+        onClose={() => setIsCopilotOpen(false)}
+        scenario={currentScenario}
+      />
+
+      {/* 5. Enterprise SRE Footer */}
+      <footer className="mt-12 border-t border-slate-800/80 bg-slate-950/80 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="flex items-center gap-3">
+            <span className="font-mono font-bold text-white">SentinelOps AI</span>
+            <span>•</span>
+            <span>Ignite 1% Hackathon Official Project</span>
+            <span>•</span>
+            <span className="text-sky-400">Open Innovation AI Track</span>
+          </div>
+
+          <div className="flex items-center gap-4 text-slate-300">
+            <span>
+              Built with ❤️ by <strong className="text-white">Kaartikeya (Lead)</strong>,{' '}
+              <strong className="text-white">Sneha</strong>,{' '}
+              <strong className="text-white">Krushna</strong> &{' '}
+              <strong className="text-white">Raksh</strong>
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
