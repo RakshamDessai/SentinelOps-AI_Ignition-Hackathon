@@ -36,7 +36,7 @@ export const TeamBadge: React.FC = () => {
             <span className="text-slate-500">•</span>
             <span className="text-slate-200">Krushna</span>
             <span className="text-slate-500">•</span>
-            <span className="text-slate-200">Raksh</span>
+            <span className="text-slate-200">Raksham Dessai</span>
           </div>
         </div>
 

@@ -7,7 +7,7 @@
 > - 👑 **Kaartikeya** (Team Lead & Full-Stack Architect)  
 > - ⚡ **Sneha** (Systems & Database Reliability Engineer)  
 > - 🧠 **Krushna** (AI Telemetry & Anomaly Modeling Engineer)  
-> - 🛠️ **Raksh** (DevOps & Distributed Systems Engineer)  
+> - 🛠️ **Raksham Dessai** (DevOps & Distributed Systems Engineer)  
 >  
 > **Organized by:** Ignition in AI Era • Student Tech & Careers • NxtGenSec
 

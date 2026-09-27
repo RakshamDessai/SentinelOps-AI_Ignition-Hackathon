@@ -146,7 +146,7 @@ export default function DashboardPage() {
               Built with ❤️ by <strong className="text-white">Kaartikeya (Lead)</strong>,{' '}
               <strong className="text-white">Sneha</strong>,{' '}
               <strong className="text-white">Krushna</strong> &{' '}
-              <strong className="text-white">Raksh</strong>
+              <strong className="text-white">Raksham Dessai</strong>
             </span>
           </div>
         </div>
